@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+{% include 'header.html'%}
+{% block title %} Home {% endblock %}
+{% block body %}
+<style>
+  td{
+    font-size: 20px;
+  }
+
+</style>
+<div class="container">
+    <div class="row">
+
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Manage <b>Employees</b> <button data-toggle="modal" data-target="#modal" class="float-right btn btn-success">Add new Employee</button></h2>
+            
+            <table class="table table-hover table-dark">
+                 <tr> 
+                     <th>ID</th>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Phone</th>
+                     <th>Action</th>
+                     {% for row in employee %}
+                 </tr>
+               <td>{{row[0]}}</td>
+               <td>{{row[1]}}</td>
+               <td>{{row[2]}}</td>
+               <td>{{row[3]}}</td>
+                  
+                         <td>
+                         <a href="/edit/{{row[0]}}" class="btn btn-warning btn-xs"> Edit</a>
+                         <a href="/delete/{{row[0]}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                         </td>
+                
+                  {% endfor %}
+            </table>
+            </div>
+            <div class="modal fade" id="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                
+
+                        <form action="/add" method="post">
+                            <div class="form-group">
+                              <label for="exampleFormControlInput1">Email address</label>
+                              <input name="email" type="email" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Name</label>
+                                <input name="name" class="form-control" id="exampleFormControlInput1" >
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleFormControlInput1">Phone</label>
+                                <input name="phone" class="form-control" id="exampleFormControlInput1" >
+                              </div>
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                          </form>
+                    
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+</div>
+
+{% endblock %}
