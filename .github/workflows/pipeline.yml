@@ -7,7 +7,7 @@ env:
   ECS_CLUSTER: app        
   ECS_TASK_DEFINITION: .aws/task.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: app4test-app
+  CONTAINER_NAME: app
 
 jobs:
   Test:
@@ -24,7 +24,7 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          python3 -m pip install --upgrade pip
           pip install -r dep.txt
       - name: Testing
         run: |
