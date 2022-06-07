@@ -1,3 +1,4 @@
 flask
 coverage
 pytest
+flask_sqlalchemy
