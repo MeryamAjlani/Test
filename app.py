@@ -1,8 +1,7 @@
 
 from flask import Flask, render_template,request,redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+
 import sqlite3
-import os
 
 app =Flask(__name__)
 app.secret_key="Secret_test"
@@ -10,7 +9,6 @@ app.secret_key="Secret_test"
 app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:''@localhost/crud"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
-db=SQLAlchemy(app)
 
 
 
@@ -60,7 +58,6 @@ def add():
         email=request.form['email']
         phone=request.form['phone']
         add_employee(name,email,phone)
-        db.session.commit()
         return redirect(url_for('Index'))
 
 @app.route('/edit/<id>',methods=['GET','POST'])
